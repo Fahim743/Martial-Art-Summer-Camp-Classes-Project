@@ -52,10 +52,10 @@ const Header = () => {
               <Link>Instructors</Link>
             </li>
             <li>
-              <Link>Classes</Link>
+              <Link to={"/classes"}>Classes</Link>
             </li>
             {user && <li>
-            <Link>Dashboard</Link>
+            <Link to={'/dashboard'}>Dashboard</Link>
           </li>}
           </ul>
         </div>
@@ -70,13 +70,13 @@ const Header = () => {
           </li>
 
           <li>
-            <Link>Instructors</Link>
+            <Link to={'/instructor'}>Instructors</Link>
           </li>
           <li>
-            <Link>Classes</Link>
+            <Link to={'/classes'}>Classes</Link>
           </li>
           {user && <li>
-            <Link>Dashboard</Link>
+            <Link to={'/dashboard'}>Dashboard</Link>
           </li>}
         </ul>
       </div>
