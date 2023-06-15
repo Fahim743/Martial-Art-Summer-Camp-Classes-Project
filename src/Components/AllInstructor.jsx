@@ -17,7 +17,7 @@ const AllInstructor = () => {
           
             {ins.role=="instructor" &&
                 <div className="card w-96 bg-base-100 text-teal-500 shadow-xl mt-5 mb-5">
-                <figure><img className="w-80 h-64 rounded mt-3" src={ins.photo}  /></figure>
+                <figure><img className="w-full h-[400px] rounded mt-3 object-cover" src={ins.photo}  /></figure>
                 <div className="card-body">
                   <h2 className="card-title">{ins.displayName}</h2>
                   <p>Email: {ins.email}</p>

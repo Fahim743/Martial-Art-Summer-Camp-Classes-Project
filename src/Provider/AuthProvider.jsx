@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -39,17 +40,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     // Update user's profile with display name after login
-  //     const { displayName } = user;
-  //     if (displayName) {
-  //       updateProfile(auth.currentUser, { displayName })
-  //         .then(() => console.log("User's display name updated successfully"))
-  //         .catch((error) => console.log("Error updating user's display name:", error));
-  //     }
-  //   }
-  // }, [user]);
+  
 
   // LogIn
   const logIn = (email, password) => {
@@ -72,6 +63,19 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log(currentUser, "this is  current user");
       setLoading(false);
+
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
     });
     return () => {
       return unsubscribe();

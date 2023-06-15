@@ -4,7 +4,7 @@ import AllInstructor from "../Components/allInstructor";
 
 const Home = () => {
   return (
-    <>
+    <div >
         
       <TopBanner></TopBanner>
 
@@ -14,7 +14,7 @@ const Home = () => {
         Popular Classes Slider{" "}
       </h2>
       <SwiperComponent></SwiperComponent>
-    </>
+    </div>
   );
 };
 
