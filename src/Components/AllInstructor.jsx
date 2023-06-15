@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 
-const Instructor = () => {
+const AllInstructor = () => {
   const [instructor, setInstructor] = useState([]);
 
   useEffect(() => {
@@ -10,14 +9,9 @@ const Instructor = () => {
       .then((data) => setInstructor(data));
   }, []);
 
-
   return (
-    <div className=" container mx-auto grid grid-cols-3 gap-6 ">
-      <Helmet>
-        <title>MMA | Instructor</title>
-      </Helmet>
-
-      {instructor.map((ins) => {
+    <div className="container mx-auto grid grid-cols-3 gap-5">
+      {instructor.slice(0,6).map((ins) => {
         return (
           <div key={ins._id}>
           
@@ -34,9 +28,8 @@ const Instructor = () => {
           </div>
         );
       })}
-      
     </div>
   );
 };
 
-export default Instructor;
+export default AllInstructor;

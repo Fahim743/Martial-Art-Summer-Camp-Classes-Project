@@ -1,20 +1,22 @@
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaGrin } from 'react-icons/fa';
+import Swal from "sweetalert2";
 
 const LogIn = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { logIn , googleSignIn } = useContext(AuthContext);
   const [showPass, setShowPass] = useState("password");
-
+  const navigate = useNavigate();
 
   const handleShowPass =()=>{
     if (showPass == "password") {
@@ -39,6 +41,34 @@ const LogIn = () => {
     googleSignIn().then((res) => {
       const user = res.user;
       console.log(user);
+      const addUser = {
+        displayName: user.displayName,
+        email: user.email,
+        role: "student",
+        photo: user.photoURL,
+      };
+      fetch("http://localhost:5000/user", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addUser),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "User Logged in successfully.",
+              showConfirmButton: false
+            });
+            reset();
+            navigate("/");
+
+          }
+        });
     });
   }
   return (

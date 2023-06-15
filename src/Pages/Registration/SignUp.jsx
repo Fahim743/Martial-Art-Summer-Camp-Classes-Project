@@ -1,5 +1,5 @@
-import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
@@ -7,7 +7,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, updatingUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,12 +18,49 @@ const SignUp = () => {
 
   // Email sign up
   const onSubmit = (data) => {
+    console.log(data)
+
     if (data.password == data.confirmPassword) {
       createUser(data.email, data.password).then((result) => {
-        const user = result.user;
-        console.log(user);
-        reset();
+        const signedUser = result.user;
+        console.log(signedUser);
+       
+
+        updatingUser(data.name, data.photo)
+        .then(() => {
+          const addUser = {
+            displayName: data.name,
+            email: data.email,
+            role: "student",
+            photo: data.photo,
+          };
+          fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(addUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User added successfully.",
+                  showConfirmButton: false,
+                });
+
+                navigate("/");
+              }
+            });
+        })
       });
+
+     
+
+
     } else {
       Swal.fire({
         icon: "error",
@@ -31,14 +69,10 @@ const SignUp = () => {
       });
     }
   };
-  // Google SIgn Up
+  
+  
 
-  const handleGoogleSignUp = () => {
-    googleSignIn().then((res) => {
-      const user = res.user;
-      console.log(user);
-    });
-  };
+ 
 
   return (
     <div>
@@ -58,7 +92,7 @@ const SignUp = () => {
                   type="text"
                   placeholder="Name"
                   className="input input-bordered"
-                  {...register("name")}
+                  {...register("name", { required: true })}
                 />
               </div>
               <div className="form-control">
@@ -158,16 +192,7 @@ const SignUp = () => {
                 />{" "}
               </div>
 
-              {/* Google sign up */}
-              <div className="text-center">
-                <h2 className="mb-3 mt-4 text-teal-500">Sign up with</h2>
-                <button
-                  onClick={handleGoogleSignUp}
-                  className="btn w-2/4 bg-teal-400 text-white "
-                >
-                  <FaGoogle></FaGoogle>{" "}
-                </button>
-              </div>
+             
             </form>
           </div>
         </div>

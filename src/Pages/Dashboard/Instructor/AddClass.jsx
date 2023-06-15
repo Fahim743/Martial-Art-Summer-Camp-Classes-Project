@@ -4,18 +4,57 @@ import { useForm } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import useAxios from "../../../Hooks/useAXios";
 const AddClass = () => {
   
   const {user} = useContext(AuthContext)
+
+  console.log(user , "this is user");
     const {
     register,
+    reset,
     handleSubmit,
 
-    formState: { errors },
+  
   } = useForm();
+
+  const [axiosSecure]  =useAxios();
 
   const onSubmit = (data) => {
     console.log(data);
+    const {
+        classPhoto,
+        className,
+      instructorEmail,
+      instructorName,
+      price,
+      availableSeats,
+    } = data;
+
+    const addClass = {
+      className,
+      classPhoto,
+      instructorEmail,
+      instructorName,
+      price,
+      availableSeats,
+      status: "pending",
+    };
+    
+    axiosSecure.post("/classes", addClass)
+    .then((data) => {
+      if (data.data.insertedId) {
+       
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Class added ",
+          showConfirmButton: false,
+        });
+        reset();
+      }
+    });
   };
   return (
     <div>
@@ -58,9 +97,15 @@ const AddClass = () => {
             type="text"
             placeholder="Name"
             className="input input-bordered"
-            disabled="true"
-            value={user?.displayName}
-            {...register("instructorName")}
+            // disabled={true}
+            defaultValue={user?.displayName}
+            required
+            readOnly
+         
+            {...register("instructorName", {
+              required: true,
+              maxLength: 120,
+            })}
           />
         </div>
         <div className="form-control">
@@ -69,11 +114,18 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Email"
             className="input input-bordered"
-            value={user?.email}
-            disabled="true"
-            {...register("instructorEmail")}
+            defaultValue={user?.email}
+            // disabled={true}
+            required
+            readOnly
+            
+            
+            {...register("instructorEmail", {
+             required: true,
+              maxLength: 120,
+            })}
           />
         </div>
         <div className="form-control">
@@ -103,7 +155,7 @@ const AddClass = () => {
           <button className="btn bg-teal-400 text-white">
             <input type="submit" value="Add" />
             <FaPlus> </FaPlus>
-          </button>{" "}
+          </button>
         </div>
       </form>
     </div>

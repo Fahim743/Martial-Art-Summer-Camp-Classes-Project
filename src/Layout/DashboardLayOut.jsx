@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link, Outlet } from "react-router-dom";
-import { FaHome ,FaBook,FaUserAlt} from 'react-icons/fa';
+import { FaHome ,FaBook,FaUserAlt, FaBookmark} from 'react-icons/fa';
 
 const DashboardLayOut = () => {
     return (
@@ -22,8 +22,10 @@ const DashboardLayOut = () => {
     <ul className="menu p-4 w-80 h-full bg-teal-400 text-white">
       {/* Sidebar content here */}
       <li><Link to={"/"}><FaHome></FaHome> Home</Link></li>
-      <li> <Link to={"/classes"}><FaBook></FaBook> Classes</Link></li>
+      <li> <Link to={"myclasses"}><FaBook></FaBook> My Classes</Link></li>
       <li> <Link to={"addclass"}><FaUserAlt></FaUserAlt> Add Class</Link></li>
+      <li> <Link to={"manageuser"}><FaUserAlt></FaUserAlt> Manage User</Link></li>
+      <li> <Link to={"manageclasses"}><FaBookmark></FaBookmark> Manage Classes</Link></li>
       
     </ul>
   
