@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC9MjZQv1JLQbq1EgS_UYzAIPf3Hc4k1JI",
-  authDomain: "martial-art-client-side.firebaseapp.com",
-  projectId: "martial-art-client-side",
-  storageBucket: "martial-art-client-side.appspot.com",
-  messagingSenderId: "964832964308",
-  appId: "1:964832964308:web:b372a1267b60945c941541"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
