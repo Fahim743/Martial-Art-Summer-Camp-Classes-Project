@@ -63,7 +63,7 @@ const Class = () => {
               icon: "success",
               title: "Added to cart",
               showConfirmButton: false,
-              timer: 1700,
+              
             });
           }
         })
@@ -73,7 +73,7 @@ const Class = () => {
             icon: "error",
             title: "Oops...",
             text: "Please select another one!",
-            footer: "Please select another class",
+            
           });
         });
     }
