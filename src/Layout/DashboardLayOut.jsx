@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link, Outlet } from "react-router-dom";
-import { FaHome ,FaBook,FaUserAlt, FaBookmark} from 'react-icons/fa';
+import { FaHome ,FaBook,FaUserAlt, FaBookmark, FaRegBookmark} from 'react-icons/fa';
 import checkAdmin from "../Hooks/checkAdmin";
 import checkInstructor from "../Hooks/checkInstructor";
 
@@ -10,7 +10,7 @@ const DashboardLayOut = () => {
   const [isAdmin] = checkAdmin();
   const [isInstructor] = checkInstructor();
   console.log(isInstructor, "this is instructor")
-
+// const isInstructor = true;
     return (
         <div>
             <Helmet>
@@ -46,6 +46,8 @@ const DashboardLayOut = () => {
           </>
         )
       }
+      <li> <Link to={"myselectedclass"}><FaRegBookmark></FaRegBookmark> My Selected Claas</Link></li>
+      <li> <Link to={"myenrolledclass"}><FaBookmark></FaBookmark>My Enrolled Class</Link></li>
       
     </ul>
   

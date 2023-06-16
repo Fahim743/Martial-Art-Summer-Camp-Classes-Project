@@ -52,7 +52,7 @@ const ManageUser = () => {
           if (data.modifiedCount) {
            
             Swal.fire({
-              position: "top",
+              position: "center",
               icon: "success",
               title: `${name} is now an admin`,
               showConfirmButton: false,

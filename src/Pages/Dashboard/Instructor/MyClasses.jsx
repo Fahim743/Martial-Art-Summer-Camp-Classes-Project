@@ -2,15 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const MyClasses = () => {
+
   const { user } = useContext(AuthContext);
   console.log(user)
-
+ 
   const [instructorClass, setInstructorClass] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/classes/${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setInstructorClass(data));
+      .then((data) => 
+      setInstructorClass(data));
   }, []);
   console.log(instructorClass);
   return (
