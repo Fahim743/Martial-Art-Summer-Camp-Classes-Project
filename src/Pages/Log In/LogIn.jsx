@@ -33,7 +33,7 @@ const LogIn = () => {
     logIn(email,password)
     .then(res=>{
       const user = res.user;
-      console.log(user);
+      
       navigate('/')
 
     })
@@ -41,7 +41,7 @@ const LogIn = () => {
   const handleGoogleSignin= ()=>{
     googleSignIn().then((res) => {
       const user = res.user;
-      console.log(user);
+      
       reset();
       navigate('/')
       const addUser = {
