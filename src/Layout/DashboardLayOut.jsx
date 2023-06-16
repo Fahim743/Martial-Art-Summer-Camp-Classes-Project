@@ -46,8 +46,15 @@ const DashboardLayOut = () => {
           </>
         )
       }
-      <li> <Link to={"myselectedclass"}><FaRegBookmark></FaRegBookmark> My Selected Claas</Link></li>
+      {
+        !isAdmin && !isInstructor && (
+<>
+<li> <Link to={"myselectedclass"}><FaRegBookmark></FaRegBookmark> My Selected Claas</Link></li>
       <li> <Link to={"myenrolledclass"}><FaBookmark></FaBookmark>My Enrolled Class</Link></li>
+</>
+        )
+      }
+      
       
     </ul>
   

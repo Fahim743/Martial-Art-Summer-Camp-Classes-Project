@@ -9,7 +9,7 @@ const MyClasses = () => {
   const [instructorClass, setInstructorClass] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/classes/${user?.email}`)
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/classes/${user?.email}`)
       .then((res) => res.json())
       .then((data) => 
       setInstructorClass(data));

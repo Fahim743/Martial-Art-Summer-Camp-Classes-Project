@@ -3,15 +3,19 @@ const Footer = () => {
     <div>
       <footer className="footer p-10 bg-teal-500 text-white">
         <div>
-          <span className="text-3xl">MMA CAMP <span className="text-sm ml-0">©</span></span>
+          <span className="text-3xl">
+            MMA CAMP <span className="text-sm ml-0">©</span>
+          </span>
           <p>
             Martial Art Summer Camp
             <br />
             Providing Self-Defence Training since 1992
           </p>
+          <div className="text-center">
+          <p>Copyright © 2023 - All right reserved by MMA CAMP<span className="text-sm ml-0">©</span></p>
         </div>
-        
-        
+        </div>
+
         <div>
           <span className="footer-title">Social</span>
           <div className="grid grid-flow-col gap-4">
@@ -49,7 +53,17 @@ const Footer = () => {
               </svg>
             </a>
           </div>
+          <div>
+            <div className=" text-white">
+              <small>Address: 101/b, Dhanmondi, Dhaka</small>
+            </div>
+            <div className=" text-white">
+              <small>Contact: 010000000</small>
+            </div>
+          </div>
         </div>
+       
+       
       </footer>
     </div>
   );

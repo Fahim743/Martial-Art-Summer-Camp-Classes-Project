@@ -13,7 +13,7 @@ const ManageClasses = () => {
   console.log(classes);
 
   const handleAccept = (id) => {
-    fetch(`http://localhost:5000/classes/makeAccept/${id}`, {
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/classes/makeAccept/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -31,7 +31,7 @@ const ManageClasses = () => {
       });
   };
   const handleReject = (id) => {
-    fetch(`http://localhost:5000/classes/makeReject/${id}`, {
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/classes/makeReject/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

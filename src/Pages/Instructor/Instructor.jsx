@@ -5,7 +5,7 @@ const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user`)
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/user`)
       .then((res) => res.json())
       .then((data) => setInstructor(data));
   }, []);

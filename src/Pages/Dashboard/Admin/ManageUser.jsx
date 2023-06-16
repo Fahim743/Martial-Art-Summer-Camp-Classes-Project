@@ -14,7 +14,7 @@ const ManageUser = () => {
   const handleManageInst=(id , name)=>{
     console.log(id)
 
-    fetch(`http://localhost:5000/user/makeInstructor/${id}`,
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/user/makeInstructor/${id}`,
         {
           method: "PATCH",
         }
@@ -42,7 +42,7 @@ const ManageUser = () => {
     console.log(id)
 
    
-    fetch(`http://localhost:5000/user/makeAdmin/${id}`,
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/user/makeAdmin/${id}`,
         {
           method: "PATCH",
         }

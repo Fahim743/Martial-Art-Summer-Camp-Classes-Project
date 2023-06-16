@@ -4,7 +4,7 @@ const Class = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/classes`)
+    fetch(`https://martial-art-summer-camp-server-side.vercel.app/classes`)
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -24,9 +24,9 @@ const Class = () => {
                 <p>Available seats: {allClass.availableSeats}</p>
                 <p>Price: {allClass.price}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary" disabled="true">
+                 { <button className="btn btn-primary" disabled="true">
                     Select
-                  </button>
+                  </button>}
                 </div>
               </div>
             </div>

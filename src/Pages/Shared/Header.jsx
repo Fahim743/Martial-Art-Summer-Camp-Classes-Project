@@ -3,9 +3,11 @@ import { FaUser } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Header = () => {
   const { user,logOut } = useContext(AuthContext);
+  const{darkMode,setDarkMode} =useState(true)
 
   const handleLogOut = ()=>{
     logOut()
@@ -18,6 +20,18 @@ const Header = () => {
               timer: 1500
             })
     })
+
+  }
+
+  const handleDarkMode =()=>{
+    if(darkMode==true){
+      setDarkMode(false)  ;
+
+    }
+    else{
+          setDarkMode(true) ;
+        }
+
 
   }
   return (
@@ -87,6 +101,7 @@ const Header = () => {
         :<Link to={"/login"}>
           <button className="btn btn-accent text-white ">Log In</button>
         </Link> }
+        {darkMode==true ? <button onClick={handleDarkMode} className="btn bg-white ml-2">light Mode</button>:<button onClick={handleDarkMode} className="btn bg-black ml-2 text-white">Dark Mode</button>}
       </div>
     </div>
   );
