@@ -1,3 +1,4 @@
+import ExtraComponent from "../Components/ExtraComponent";
 import SwiperComponent from "../Components/SwiperComponent";
 import TopBanner from "../Components/TopBanner";
 import AllInstructor from "../Components/allInstructor";
@@ -14,6 +15,7 @@ const Home = () => {
         Popular Classes Slider{" "}
       </h2>
       <SwiperComponent></SwiperComponent>
+      <ExtraComponent></ExtraComponent>
     </div>
   );
 };
