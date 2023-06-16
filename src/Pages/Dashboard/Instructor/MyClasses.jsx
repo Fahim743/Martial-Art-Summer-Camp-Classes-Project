@@ -2,17 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const MyClasses = () => {
-
   const { user } = useContext(AuthContext);
-  console.log(user)
- 
+  console.log(user);
+
   const [instructorClass, setInstructorClass] = useState([]);
 
   useEffect(() => {
-    fetch(`https://martial-art-summer-camp-server-side.vercel.app/classes/${user?.email}`)
+    fetch(
+      `https://martial-art-summer-camp-server-side.vercel.app/classes/${user?.email}`
+    )
       .then((res) => res.json())
-      .then((data) => 
-      setInstructorClass(data));
+      .then((data) => setInstructorClass(data));
   }, []);
   console.log(instructorClass);
   return (
@@ -46,21 +46,20 @@ const MyClasses = () => {
                       </div>
                     </div>
                   </td>
-                    <td>
-                      {" "}
-                    
-                        <div className="font-bold">{insClass.className}</div>
-                      
-                    </td>
-                  <td className="text-center">
-                   1
+                  <td>
+                    <div className="font-bold">{insClass.className}</div>
                   </td>
+                  <td className="text-center">1</td>
                   <td>{insClass.status}</td>
                   <th>
-                   {insClass.status=="pending" || insClass.status=="rejected" ? <p>{insClass.feedback}</p>:<p>No feedback</p> }
+                    {insClass.status == "pending" ||
+                    insClass.status == "rejected" ? (
+                      <p>{insClass.feedback}</p>
+                    ) : (
+                      <p>No feedback available</p>
+                    )}
                   </th>
                 </tr>
-                
               </>
             ))}
           </tbody>
