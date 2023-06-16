@@ -59,7 +59,7 @@ const MySelectedClass = () => {
           </thead>
           <tbody>
             {classCart.map((single) => (
-              <tr >
+              <tr key={single._id}>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
